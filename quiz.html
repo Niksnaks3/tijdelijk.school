@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5AICTLP quiz - Vragen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-msg">
+            <img id="playerIcon" src="" alt="Speler icoon">
+            <span id="playerNameDisplay"></span>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 10%"></div>
+        </div>
+        
+        <div id="questionContainer">
+            <!-- Vragen worden hier dynamisch geladen -->
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-arrow" id="prevBtn" onclick="prevQuestion()" disabled><</button>
+            <button class="btn submit-btn hidden" id="submitBtn" onclick="submitQuiz()">Inleveren</button>
+            <button class="nav-arrow" id="nextBtn" onclick="nextQuestion()">></button>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

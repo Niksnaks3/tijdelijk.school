@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5AICTLP quiz - Resultaten</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 5AICTLP Quiz Voltooid!</h1>
+
+        <div class="welcome-msg">
+            <img id="playerIcon" src="" alt="Speler icoon">
+            <span id="playerNameDisplay"></span>
+        </div>
+
+        <div class="score" id="scoreDisplay"></div>
+
+        <p class="center" id="messageDisplay"></p>
+
+        <div class="center" style="margin-top: 30px;">
+            <a href="index.html" class="btn">Opnieuw Spelen</a>
+        </div>
+    </div>
+
+    <script>
+        const playerName = localStorage.getItem('playerName');
+        const playerIcon = localStorage.getItem('playerIcon');
+
+        if (!playerName) {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('playerNameDisplay').textContent = playerName;
+        document.getElementById('playerIcon').src = playerIcon;
+
+        const stored = sessionStorage.getItem('lastResult');
+        const latestResult = stored ? JSON.parse(stored) : null;
+
+        if (latestResult) {
+            document.getElementById('scoreDisplay').textContent =
+                `${latestResult.score} / ${latestResult.total}`;
+
+            const percentage = (latestResult.score / latestResult.total) * 100;
+            let message = '';
+
+            if (percentage === 100) {
+                message = 'Perfect! Je bent een echte backend expert! 🏆';
+            } else if (percentage >= 80) {
+                message = 'Geweldig gedaan! Je kent je backend goed! ⭐';
+            } else if (percentage >= 60) {
+                message = 'Goed gedaan! Maar er is nog ruimte voor verbetering. 📚';
+            } else if (percentage >= 40) {
+                message = 'Niet slecht! Blijf oefenen om beter te worden. 💪';
+            } else {
+                message = 'Tijd om wat meer te studeren over backends! 📖';
+            }
+
+            document.getElementById('messageDisplay').textContent = message;
+        }
+    </script>
+</body>
+</html>

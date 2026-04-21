@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5AICTLP quiz - Welkom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🖥️ 5AICTLP Quiz</h1>
+        <p class="center">Test je kennis over Windows, macOS en Linux!</p>
+        
+        <div class="form-section">
+            <label for="playerName">Jouw naam:</label>
+            <input type="text" id="playerName" placeholder="Vul je naam in..." maxlength="30">
+            
+            <label>Kies je icoon:</label>
+            <div class="icon-selection">
+                <div class="icon-option" data-icon="icon1.png" onclick="selectIcon(this)">
+                    <img src="icon1.png" alt="Icoon 1">
+                    <p>Icon 1</p>
+                </div>
+                <div class="icon-option" data-icon="icon2.png" onclick="selectIcon(this)">
+                    <img src="icon2.png" alt="Icoon 2">
+                    <p>Icon 2</p>
+                </div>
+                <div class="icon-option" data-icon="icon3.png" onclick="selectIcon(this)">
+                    <img src="icon3.png" alt="Icoon 3">
+                    <p>Icon 3</p>
+                </div>
+            </div>
+            
+            <div class="center">
+                <button class="btn" onclick="startQuiz()">Start Quiz</button>
+            </div>
+            <p id="errorMsg" class="error hidden"></p>
+        </div>
+        
+        <div class="center" style="margin-top: 30px;">
+            <a href="admin.html" class="btn" style="font-size: 0.9rem; padding: 10px 25px;">Admin Login</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedIcon = null;
+
+        function selectIcon(element) {
+            document.querySelectorAll('.icon-option').forEach(icon => {
+                icon.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedIcon = element.getAttribute('data-icon');
+        }
+
+        function startQuiz() {
+            const name = document.getElementById('playerName').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (!name) {
+                errorMsg.textContent = 'Vul alsjeblieft je naam in!';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            if (!selectedIcon) {
+                errorMsg.textContent = 'Kies alsjeblieft een icoon!';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            localStorage.setItem('playerName', name);
+            localStorage.setItem('playerIcon', selectedIcon);
+            localStorage.removeItem('quizAnswers');
+            
+            window.location.href = 'quiz.html';
+        }
+
+        document.getElementById('playerName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                startQuiz();
+            }
+        });
+    </script>
+</body>
+</html>

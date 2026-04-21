@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5AICTLP quiz - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 5AICTLP Admin Paneel</h1>
+        
+        <div id="loginSection" class="admin-login">
+            <label for="adminPassword">Wachtwoord:</label>
+            <input type="password" id="adminPassword" placeholder="Voer wachtwoord in...">
+            <div class="center">
+                <button class="btn" onclick="login()">Inloggen</button>
+            </div>
+            <p id="loginError" class="error hidden"></p>
+        </div>
+        
+        <div id="resultsSection" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Quiz Resultaten</h2>
+                <button class="btn" onclick="logout()" style="font-size: 0.9rem; padding: 10px 20px;">Uitloggen</button>
+            </div>
+            
+            <div id="resultsTableContainer">
+                <p class="center">Nog geen resultaten beschikbaar.</p>
+            </div>
+            
+            <div class="center" style="margin-top: 30px;">
+                <button class="btn" onclick="clearResults()" style="background-color: #ff6b6b;">Alle Resultaten Wissen</button>
+            </div>
+        </div>
+        
+        <div class="center" style="margin-top: 30px;">
+            <a href="index.html" class="btn" style="font-size: 0.9rem; padding: 10px 25px;">Terug naar Home</a>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
